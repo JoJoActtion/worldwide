@@ -50,6 +50,16 @@
       display: none;
     }
   </style>
+  <script>
+  // jeśli już zalogowany — od razu pokaż zawartość
+  window.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("autoryzowany") === "true") {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }
+  });
+</script>
+
 </head>
 <body>
 
