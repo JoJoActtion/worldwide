@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head> 
+<head>
   <meta charset="UTF-8">
   <title>Intro</title>
   <style>
@@ -17,20 +17,29 @@
       margin-bottom: 30px;
     }
 
-    a {
-      color: #00aaff;
-      word-break: break-word;
+    .link-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
       font-size: 1rem;
+      margin-bottom: 40px;
     }
 
-    .link-container {
-      max-width: 90%;
-      margin: 0 auto;
-      word-break: break-word;
+    .raw-link {
+      color: #00aaff;
+      font-size: 1rem;
+      word-break: break-all;
     }
   </style>
 </head>
 <body>
   <h1>Intro</h1>
 
-  <a href="index.html" style="display:block; margin-bottom: 40px;">← Powr
+  <a href="index.html" class="link-button">← Powrót</a>
+
+  <p>
+    <a class="raw-link" target="_blank" href="https://script.google.com/macros/s/AKfycbwjwnfs6AQCwk-PFKooqC7EjtNqjM_M1SVK9w1PFVRtnX08eCe-fFBHWbKH53ViVfUKrQ/exec">
+      https://script.google.com/macros
