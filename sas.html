@@ -52,6 +52,12 @@
       font-size: 0.95rem;
     }
   </style>
+  <script>
+  if (localStorage.getItem("autoryzowany") !== "true") {
+    window.location.href = "index.html"; // przekierowanie, jeśli brak autoryzacji
+  }
+</script>
+
 </head>
 <body>
   <h1>SAS</h1>
