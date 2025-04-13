@@ -4,104 +4,38 @@
   <meta charset="UTF-8">
   <title>Intro</title>
   <style>
-    
     body {
       background-color: #1e1e1e;
       color: #f0f0f0;
       font-family: sans-serif;
       padding: 40px 20px;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       font-size: 2rem;
       margin-bottom: 30px;
     }
 
     .link-button {
-      display: block;
-      width: fit-content;
-      margin: 0 auto 30px;
-      padding: 10px 20px;
-      background-color: #6c757d; /* ciemny przycisk */
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #6c757d;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       font-size: 1rem;
     }
-
-    form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    input, textarea {
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      resize: vertical;
-    }
-
-    button {
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
   <h1>Intro</h1>
-  <a href="index.html" class="link-button">← Powrót</a>
+  <a href="index.html" class="link-button" style="margin-bottom: 30px; display:block;">← Powrót</a>
 
-  <form id="introForm">
-    <input type="text" id="title" name="tytul" placeholder="Tytuł" required>
-    <textarea id="code" name="kod" placeholder="Wklej kod tutaj..." required></textarea>
-    <button type="submit">Wyślij</button>
-  </form>
-
-  <script>
-    // ⬇️ TUTAJ wklej swój link Web App z Google Apps Script
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwMRPWYy-97iKMsmKPb2mzJUTZgalt4MiwyKGzamjcA9LvAsJ9znHUyfdwAnxFH8XBb/exec";
-    document.getElementById("introForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const title = document.getElementById("title").value.trim();
-      const code = document.getElementById("code").value.trim();
-
-      if (!title || !code) {
-        alert("Wypełnij oba pola!");
-        return;
-      }
-
-      fetch(scriptURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          tytul: title,
-          kod: code
-        })
-      })
-      .then(response => {
-        if (response.ok) {
-          alert("Dane zostały zapisane do Google Sheets!");
-          document.getElementById("introForm").reset();
-        } else {
-          alert("Błąd przy wysyłaniu.");
-        }
-      })
-      .catch(error => {
-        console.error("Błąd:", error);
-        alert("Błąd połączenia.");
-      });
-    });
-  </script>
+  <a href="https://script.google.com/macros/s/AKfycbwjwnfs6AQCwk-PFKooqC7EjtNqjM_M1SVK9w1PFVRtnX08eCe-fFBHWbKH53ViVfUKrQ/exec" 
+     target="_blank" 
+     class="link-button">
+    Otwórz formularz Google
+  </a>
 </body>
 </html>
