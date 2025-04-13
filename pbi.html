@@ -27,6 +27,12 @@
       font-weight: bold;
     }
   </style>
+  <script>
+  if (localStorage.getItem("autoryzowany") !== "true") {
+    window.location.href = "index.html"; // przekierowanie, jeśli brak autoryzacji
+  }
+</script>
+
 </head>
 <body>
   <h1>Power BI</h1>
