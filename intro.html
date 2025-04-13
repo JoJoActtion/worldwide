@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Intro</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+      font-family: sans-serif;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .link-button {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 30px;
+      padding: 10px 20px;
+      background-color: #6c757d; /* ciemny przycisk */
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      resize: vertical;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .section {
+      background-color: #2c2c2c;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 800px;
+      border-radius: 8px;
+    }
+
+    .opis {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    pre {
+      background-color: #1b1b1b;
+      color: #dcdcdc;
+      padding: 15px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h1>Intro</h1>
+  <a href="index.html" class="link-button">← Powrót</a>
+
+  <input type="text" id="title" placeholder="Tytuł">
+  <textarea id="code" placeholder="Wklej kod tutaj..."></textarea>
+  <button onclick="addEntry()">GO</button>
+
+  <div id="entries"></div>
+
+  <script>
+    // ładuj zapisane dane przy starcie
+    window.onload = function () {
+      const saved = localStorage.getItem("intro_entries");
+      if (saved) {
+        const entries = JSON.parse(saved);
+        entries.forEach(entry => {
+          addEntryToPage(entry.title, entry.code);
+        });
+      }
+    }
+
+    function addEntry() {
+      const title = document.getElementById("title").value.trim();
+      const code = document.getElementById("code").value.trim();
+
+      if (!title || !code) {
+        alert("Wypełnij oba pola!");
+        return;
+      }
+
+      addEntryToPage(title, code);
+
+      const existing = JSON.parse(localStorage.getItem("intro_entries") || "[]");
+      existing.push({ title, code });
+      localStorage.setItem("intro_entries", JSON.stringify(existing));
+
+      document.getElementById("title").value = "";
+      document.getElementById("code").value = "";
+    }
+
+    function addEntryToPage(title, code) {
+      const entry = document.createElement("div");
+      entry.className = "section";
+      entry.innerHTML = `
+        <div class="opis">Opis: ${title}</div>
+        <pre>${code}</pre>
+      `;
+      document.getElementById("entries").appendChild(entry);
+    }
+  </script>
+</body>
+</html>
