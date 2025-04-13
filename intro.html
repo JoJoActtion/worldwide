@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Intro</title>
+  <title>Witaj</title>
   <style>
     body {
       background-color: #1e1e1e;
@@ -17,36 +17,73 @@
       margin-bottom: 30px;
     }
 
+    input {
+      padding: 10px;
+      margin: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     .link-button {
       display: inline-block;
-      padding: 10px 20px;
-      background-color: #6c757d;
+      margin: 10px;
+      padding: 12px 24px;
+      background-color: #007bff;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       font-size: 1rem;
-      margin-bottom: 40px;
     }
 
-    .raw-link {
-      color: #00aaff;
-      font-size: 1rem;
-      display: block;
-      max-width: 90%;
-      margin: 0 auto;
-      overflow-wrap: anywhere;
+    #main-content {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>Intro</h1>
 
-  <a href="index.html" class="link-button">← Powrót</a>
+  <div id="login-box">
+    <h1>Zaloguj się</h1>
+    <input type="text" id="username" placeholder="Login"><br>
+    <input type="password" id="password" placeholder="Hasło"><br>
+    <button onclick="checkLogin()">Zaloguj</button>
+    <p id="error" style="color: red; display: none;">Niepoprawny login lub hasło</p>
+  </div>
 
-  <p>
-    <a class="raw-link" target="_blank" href="https://script.google.com/macros/s/AKfycbwjwnfs6AQCwk-PFKooqC7EjtNqjM_M1SVK9w1PFVRtnX08eCe-fFBHWbKH53ViVfUKrQ/exec">
-      https://script.google.com/macros/s/AKfycbwjwnfs6AQCwk-PFKooqC7EjtNqjM_M1SVK9w1PFVRtnX08eCe-fFBHWbKH53ViVfUKrQ/exec
-    </a>
-  </p>
+  <div id="main-content">
+    <h1>Witaj wędrowcze, usiądź na chwilę i posłuchaj.</h1>
+    <a href="sas.html" class="link-button">SAS</a>
+    <a href="pbi.html" class="link-button">Power BI</a>
+    <a href="intro.html" class="link-button gray-button">Intro</a>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const login = document.getElementById("username").value.trim();
+      const haslo = document.getElementById("password").value.trim();
+
+      // 🔐 tutaj ustawiasz swoje dane
+      const poprawnyLogin = "admin";
+      const poprawneHaslo = "1234";
+
+      if (login === poprawnyLogin && haslo === poprawneHaslo) {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+  </script>
 </body>
 </html>
