@@ -67,10 +67,40 @@
   </form>
 
   <script>
-    // Tymczasowy placeholder pod integrację z Google Sheets
+    // ⬇️ TUTAJ wklej swój link Web App z Google Apps Script
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwMRPWYy-97iKMsmKPb2mzJUTZgaIt4MiwyKGzamjcA9LvAsJ9znHUyfdwAnxFH8XBb/exec";
+
     document.getElementById("introForm").addEventListener("submit", function(event) {
       event.preventDefault();
-      alert("Formularz działa! Tu wkrótce będzie zapis do Google Sheets.");
+
+      const title = document.getElementById("title").value.trim();
+      const code = document.getElementById("code").value.trim();
+
+      if (!title || !code) {
+        alert("Wypełnij oba pola!");
+        return;
+      }
+
+      fetch(scriptURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tytul: title,
+          kod: code
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("Dane zostały zapisane do Google Sheets!");
+          document.getElementById("introForm").reset();
+        } else {
+          alert("Błąd przy wysyłaniu.");
+        }
+      })
+      .catch(error => {
+        console.error("Błąd:", error);
+        alert("Błąd połączenia.");
+      });
     });
   </script>
 </body>
