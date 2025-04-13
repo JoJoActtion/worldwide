@@ -38,11 +38,11 @@
     }
   </style>
   <script>
-  if (localStorage.getItem("autoryzowany") !== "true") {
-    window.location.href = "index.html"; // przekierowanie, jeśli brak autoryzacji
-  }
-</script>
-
+    // sprawdzamy autoryzację
+    if (localStorage.getItem("autoryzowany") !== "true") {
+      window.location.href = "index.html"; // jeśli nie autoryzowany, cofamy
+    }
+  </script>
 </head>
 <body>
   <h1>Intro</h1>
