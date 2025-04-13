@@ -45,37 +45,62 @@
       border-radius: 5px;
       font-size: 1rem;
     }
+
     .gray-button {
-  background-color: #6c757d;
-}
-.logout-button {
-  display: inline-block;
-  margin-top: 40px;
-  padding: 10px 20px;
-  background-color: #dc3545; /* czerwony */
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 1rem;
-}
+      background-color: #6c757d;
+    }
+
+    .logout-button {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 20px;
+      background-color: #dc3545; /* czerwony */
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
 
     #main-content {
       display: none;
     }
   </style>
-  <script>
-  // jeśli już zalogowany — od razu pokaż zawartość
-  window.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("autoryzowany") === "true") {
-      document.getElementById("login-box").style.display = "none";
-      document.getElementById("main-content").style.display = "block";
-    }
-  });
-</script>
 
+  <script>
+    // Pokazuje główną zawartość jeśli już jesteśmy zalogowani
+    window.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("autoryzowany") === "true") {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      }
+    });
+
+    function checkLogin() {
+      const login = document.getElementById("username").value.trim();
+      const haslo = document.getElementById("password").value.trim();
+
+      // 🔐 Twoje dane logowania
+      const poprawnyLogin = "admin";
+      const poprawneHaslo = "1234";
+
+      if (login === poprawnyLogin && haslo === poprawneHaslo) {
+        localStorage.setItem("autoryzowany", "true");
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  </script>
 </head>
 <body>
 
+  <!-- FORMULARZ LOGOWANIA -->
   <div id="login-box">
     <h1>Zaloguj się</h1>
     <input type="text" id="username" placeholder="Login"><br>
@@ -84,28 +109,18 @@
     <p id="error" style="color: red; display: none;">Niepoprawny login lub hasło</p>
   </div>
 
+  <!-- GŁÓWNA ZAWARTOŚĆ -->
   <div id="main-content">
     <h1>Witaj wędrowcze, usiądź na chwilę i posłuchaj.</h1>
+
     <a href="sas.html" class="link-button">SAS</a>
     <a href="pbi.html" class="link-button">Power BI</a>
     <a href="intro.html" class="link-button gray-button">Intro</a>
-    <a href="#" class="logout-button" onclick="logout()">🔒 Log out</a>
 
+    <br><br>
+
+    <a href="#" class="logout-button" onclick="logout()">🔒 Log out</a>
   </div>
 
-  <script>
-function checkLogin() {
-  const login = document.getElementById("username").value.trim();
-  const haslo = document.getElementById("password").value.trim();
-
-  if (login === "admin" && haslo === "1234") {
-    localStorage.setItem("autoryzowany", "true"); // zapis flagi
-    document.getElementById("login-box").style.display = "none";
-    document.getElementById("main-content").style.display = "block";
-  } else {
-    document.getElementById("error").style.display = "block";
-  }
-}
-  </script>
 </body>
 </html>
