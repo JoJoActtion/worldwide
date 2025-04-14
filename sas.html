@@ -89,14 +89,26 @@
 
   
   <div class="section">
+    <div class="opis">Zamiana . na 0 w calej tabeli</div>
+    <pre>
+      data work.DSRW_4;
+      set work.DSRW_3;
+      array x _numeric_;
+              do over x;
+              if x=. then x=0;
+              end;
+      run ;
+    </pre>
+  </div>
+
+
+  
+  <div class="section">
     <div class="opis">Opis: tworzenie tabeli (drugi krok)</div>
     <pre>
         xxxxxx
     </pre>
   </div>
-
-
-
   
 </body>
 </html>
