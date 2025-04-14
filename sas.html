@@ -63,22 +63,30 @@
   <h1>SAS</h1>
   <a href="index.html" class="link-button">← Powrót</a>
 
+  
   <div class="section">
-    <div class="opis">Opis: tworzenie tabeli</div>
+    <div class="opis">SAS EG spacje w nazwach kolumn</div>
     <pre>
-proc sql;
-describe table sql.newstates; 
-NOTE: SQL table SQL.NEWSTATES was created like:
-
-create table SQL.NEWSTATES( bufsize=4096 )
-  (
-   state char(2),
-   date num format=DATE9. informat=DATE9.,
-   population num
-  );
+          /* przy imporcie z xlsx zamienia spacje na _ - nasz guide sam tego nie robi a base tak
+          taka sytuacje mamy w LD PKD*/
+          %put %sysfunc(getoption(validvarname)); 
+          options validvarname=v7;
     </pre>
   </div>
 
+
+  <div class="section">
+    <div class="opis">Libname + let data</div>
+    <pre>
+          Libname dwh Oracle path=KKWWDDPP schema=HHH;
+          libname DS_BIR "\\xxx\www\qqqq\BIRyyyyy";
+          %let okres1=20250228;
+          %put &okres1.;
+    </pre>
+  </div>
+
+
+  
   <div class="section">
     <div class="opis">Opis: tworzenie tabeli (drugi krok)</div>
     <pre>
@@ -94,5 +102,9 @@ create table SQL.NEWSTATES( bufsize=4096 )
   );
     </pre>
   </div>
+
+
+
+  
 </body>
 </html>
