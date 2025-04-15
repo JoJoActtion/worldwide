@@ -135,9 +135,20 @@
 
   
   <div class="section">
-    <div class="opis">Opis: tworzenie tabeli (drugi krok)</div>
+    <div class="opis">Pokazujemy wartość</div>
     <pre>
-        xxxxxx
+/*Deklaracja daty danych*/
+%let data_danych = 20250331;
+%put &data_danych.;
+
+/*pokaz kurs*/
+proc sql;
+   title 'Kurs EUR do ZAIN EXCEL';
+   select max(KURS_EUR) as KURS_EUR
+      from vaa_wyn.Dane_portfelowe_&data_danych.
+      group by KURS_EUR
+      
+;quit;
     </pre>
   </div>
   
