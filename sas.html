@@ -104,6 +104,55 @@
 
   
   <div class="section">
+    <div class="opis">check na duble</div>
+    <pre>
+        "/*checki na duble*/
+  proc sql;
+   title 'check duble GRID';
+   select GRID_ID, count(GRID_ID) as Count
+      from vaa_wyn.Dane_portfelowe_total
+      group by Data_danych, GRID_ID
+      having count(*) > 1;
+;quit;"
+    </pre>
+  </div>
+ 
+
+  
+  <div class="section">
+    <div class="opis">check na brak wartości w polu</div>
+    <pre>
+  /*checki na BRAKI ERS*/
+  proc sql;
+   title 'check ERS 1';
+   select count(*) as brak_ERS
+	from vaa_wyn.Dane_portfelowe_total
+	where ECON_RISK_SECTOR_L1 is MISSING;
+  ;quit;
+    </pre>
+  </div> 
+  
+
+  
+  <div class="section">
+    <div class="opis">Opis: tworzenie tabeli (drugi krok)</div>
+    <pre>
+        xxxxxx
+    </pre>
+  </div>
+  
+
+  
+  <div class="section">
+    <div class="opis">Opis: tworzenie tabeli (drugi krok)</div>
+    <pre>
+        xxxxxx
+    </pre>
+  </div>
+  
+
+  
+  <div class="section">
     <div class="opis">Opis: tworzenie tabeli (drugi krok)</div>
     <pre>
         xxxxxx
