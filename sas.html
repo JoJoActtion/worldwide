@@ -106,14 +106,14 @@
   <div class="section">
     <div class="opis">check na duble</div>
     <pre>
-        "/*checki na duble*/
+/*checki na duble*/
   proc sql;
    title 'check duble GRID';
    select GRID_ID, count(GRID_ID) as Count
       from vaa_wyn.Dane_portfelowe_total
       group by Data_danych, GRID_ID
       having count(*) > 1;
-;quit;"
+;quit;
     </pre>
   </div>
  
